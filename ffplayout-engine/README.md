@@ -17,4 +17,10 @@ ffplayout-engine can be control over [control-engine.py](assets/control-engine.p
 ./control-engine.py -m start  # or stop, restart, reload
 ```
 
+On SELinux systems allow write access to log folder:
+
+```
+chcon -Rt svirt_sandbox_file_t /var/log/ffplayout
+```
+
 This will be done later by ffplayout-api.
