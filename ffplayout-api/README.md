@@ -13,4 +13,12 @@ Default credentials are:
 - User: admin
 - pass: admin
 
-Change this after build! In fontend or in ffplayout-api admin panel: http://localhost:8001/admin
+Change this after build!
+
+On SELinux systems allow write access to **ffplayout.yml**:
+
+```
+semanage fcontext -a -t container_file_t '/etc/ffplayout/ffplayout.yml'
+
+restorecon -v '/etc/ffplayout/ffplayout.yml'
+```
