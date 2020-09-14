@@ -10,7 +10,7 @@ RUN cd /opt && \
     rm master.zip && \
     cd ffplayout-frontend && \
     echo "BASE_URL='http://localhost:8088'" > .env && \
-    echo "API_URL='http://localhost:8001'" >> .env && \
+    echo "API_URL='/'" >> .env && \
     npm install && \
     npm run build && \
     rm -rf node_modules
