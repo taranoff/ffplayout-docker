@@ -14,10 +14,13 @@ RUN cd /opt && \
 
 # install build tools, ffmpeg dependencies and compile ffmpeg
 RUN apk update && \
-    apk add --no-cache build-base gcc libtool gperf nasm yasm linux-headers \
+    apk add --no-cache build-base gcc libtool gperf nasm yasm linux-headers tzdata \
         expat-dev zlib-dev openssl-dev fontconfig-dev libxml2-dev lame-dev \
         gnu-libiconv libpng-dev fribidi-dev zeromq-dev freetype-dev opus-dev \
         fdk-aac-dev libvpx-dev libass-dev x264-dev x265-dev && \
+    # sets timezone
+    cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
+    echo "Europe/Berlin" >  /etc/timezone && \
     # psutil needs gcc
     pip install --no-cache-dir psutil && \
     cd /opt && \
@@ -25,8 +28,9 @@ RUN apk update && \
     tar xfvj ffmpeg-snapshot.tar.bz2 && \
     rm ffmpeg-snapshot.tar.bz2 && \
     cd ffmpeg && \
-    ./configure --prefix='/usr/local/' --disable-debug --disable-doc --enable-gpl \
-    --enable-version3 --enable-nonfree --enable-runtime-cpudetect --enable-fontconfig \
+    ./configure --prefix='/usr/local/' --enable-pthreads --extra-libs=-lpthread \
+    --disable-debug --disable-doc --enable-gpl --enable-version3 \
+    --enable-nonfree --enable-runtime-cpudetect --enable-fontconfig \
     --enable-openssl --enable-libass --enable-libfdk-aac --enable-libfreetype \
     --enable-libfribidi --enable-libmp3lame --enable-libopus --enable-libvpx \
     --enable-libx264 --enable-libx265 --enable-libzmq && \
@@ -35,7 +39,7 @@ RUN apk update && \
     cd .. && \
     rm -rf ffmpeg && \
     # cleanup
-    apk del build-base gcc libtool gperf nasm yasm
+    apk del build-base gcc libtool gperf nasm yasm tzdata
 
 COPY assets/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY assets/socket-server.py /usr/local/bin/socket-server.py
