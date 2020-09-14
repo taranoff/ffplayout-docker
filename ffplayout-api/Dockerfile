@@ -4,7 +4,10 @@ ENV DJANGO_SETTINGS_MODULE=ffplayout.settings.production
 
 # get ffplayout-api and all dependencies
 RUN apk update && \
-    apk add build-base gcc linux-headers libffi-dev zeromq-dev && \
+    apk add build-base gcc linux-headers tzdata libffi-dev zeromq-dev mediainfo && \
+    # sets timezone
+    cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
+    echo "Europe/Berlin" >  /etc/timezone && \
     cd /opt && \
     wget "https://github.com/ffplayout/ffplayout-api/archive/master.zip" && \
     unzip 'master.zip' && \
@@ -14,13 +17,14 @@ RUN apk update && \
     pip install --no-cache-dir -r requirements-base.txt && \
     mkdir /etc/ffplayout && \
     # cleanup
-    apk del build-base gcc linux-headers
+    apk del build-base gcc linux-headers tzdata
 
 RUN cd /opt/ffplayout-api/ffplayout && \
     sed -i "s/---a-very-important-secret-key\:-generate-it-new---/$(python manage.py shell -c 'from django.core.management import utils; print(utils.get_random_secret_key())')/g" ffplayout/settings/production.py && \
     sed -i "s/localhost/*/g" ffplayout/settings/production.py && \
-    sed -i "s/ffplayout.local/localhost:8088/g" ffplayout/settings/production.py && \
+    sed -i "s/ffplayout.local/ffplayout-api:8088/g" ffplayout/settings/production.py && \
     sed -i "s/USE_SOCKET = False/USE_SOCKET = True/g" ffplayout/settings/common.py && \
+    sed -i "s/SOCKET_IP = '127.0.0.1'/SOCKET_IP = 'ffplayout-engine'/g" ffplayout/settings/common.py && \
     python manage.py makemigrations && \
     python manage.py migrate && \
     python manage.py collectstatic && \
