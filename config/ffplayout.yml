@@ -80,13 +80,12 @@ storage:
     - .mkv
     shuffle: true
 text:
-    helptext: Overlay text in combination with messenger 'https://github.com/ffplayout/messenger'.
-        On windows fontfile path need to be like this 'C\:/WINDOWS/fonts/DejaVuSans.ttf'.
+    helptext: On windows fontfile path need to be like this 'C\:/WINDOWS/fonts/DejaVuSans.ttf'.
         In a standard environment the filter drawtext node is Parsed_drawtext_2.
     add_text: true
     over_pre: false
     bind_address: 0.0.0.0:5555
-    fontfile: /tv-media/ADtv.Grafiken/SourceSansPro-Semibold.ttf
+    fontfile: /tv-media/00-assets/SourceSansPro-Semibold.ttf
 out:
     helptext: The final playout compression. Set the settings to your needs. 'mode'
         has the standard options 'desktop', 'hls', 'stream'. Self made outputs can
