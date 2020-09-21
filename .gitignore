@@ -1,2 +1,6 @@
 logs/
 .ropeproject/
+temp/
+*.sqlite3
+assets/static/*
+!assets/static/README.md
