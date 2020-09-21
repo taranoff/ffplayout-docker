@@ -41,6 +41,8 @@ services:
             - "./logs:/var/log/ffplayout"
             - "/tv-media:/tv-media"
             - "/playlists:/playlists"
+            - "./assets/static:/opt/ffplayout-api/ffplayout/static"
+            - "./assets/dbs:/opt/ffplayout-api/ffplayout/dbs"
         networks:
             - ffplayout-network
         ports:
@@ -55,6 +57,7 @@ services:
         volumes:
             - "/tv-media:/usr/share/nginx/html/tv-media"
             - "./config/frontend.conf:/etc/nginx/conf.d/default.conf"
+            - "./assets/static:/usr/share/nginx/html/static"
         networks:
             - ffplayout-network
         ports:
