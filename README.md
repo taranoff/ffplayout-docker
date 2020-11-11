@@ -16,5 +16,3 @@ podman-compose up -d
 ```
 
 In **config** folder you found all config files you need, for the engine, srs and nginx (runs in ffplayout-frontend).
-
-Please use always the newest **ffplayout.yml** from [engine](https://github.com/ffplayout/ffplayout-engine), when you build everything new!
