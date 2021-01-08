@@ -1,1 +1,1 @@
-playlists goes here
+playlists goes here.The folder structure is created automatically.
