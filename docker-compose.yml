@@ -22,8 +22,8 @@ services:
         volumes:
             - "./config/ffplayout.yml:/etc/ffplayout/ffplayout.yml"
             - "./logs:/var/log/ffplayout"
-            - "/tv-media:/tv-media"
-            - "/playlists:/playlists"
+            - "./tv-media:/tv-media"
+            - "./playlists:/playlists"
         networks:
             - ffplayout-network
         ports:
@@ -39,8 +39,8 @@ services:
         volumes:
             - "./config/ffplayout.yml:/etc/ffplayout/ffplayout.yml"
             - "./logs:/var/log/ffplayout"
-            - "/tv-media:/tv-media"
-            - "/playlists:/playlists"
+            - "./tv-media:/tv-media"
+            - "./playlists:/playlists"
             - "./assets/static:/opt/ffplayout-api/ffplayout/static"
             - "./assets/dbs:/opt/ffplayout-api/ffplayout/dbs"
         networks:
