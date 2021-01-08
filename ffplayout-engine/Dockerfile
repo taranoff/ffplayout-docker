@@ -5,7 +5,7 @@ RUN pip install supervisor
 # get ffplayout engine and install all dependencies
 RUN cd /opt && \
     wget "https://github.com/ffplayout/ffplayout-engine/archive/v2.0.0.zip" && \
-    unzip 'ffplayout-engine-2.0.0.zip' && \
+    unzip 'v2.0.0.zip' && \
     mv 'ffplayout-engine-2.0.0' 'ffplayout-engine' && \
     rm master.zip && \
     cd ffplayout-engine && \
