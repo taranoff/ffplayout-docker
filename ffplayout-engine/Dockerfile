@@ -14,10 +14,12 @@ RUN cd /opt && \
 
 # install build tools, ffmpeg dependencies and compile ffmpeg
 RUN apk update && \
-    apk add --no-cache build-base gcc libtool gperf nasm yasm linux-headers tzdata \
-        expat-dev zlib-dev openssl-dev fontconfig-dev libxml2-dev lame-dev \
-        gnu-libiconv libpng-dev fribidi-dev zeromq-dev freetype-dev opus-dev \
-        fdk-aac-dev libvpx-dev libass-dev x264-dev x265-dev && \
+    apk add --no-cache build-base gcc libtool gperf nasm yasm linux-headers tzdata openssl-dev && \
+    apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main \
+        expat-dev zlib-dev fontconfig-dev libxml2-dev lame-dev \
+        libpng-dev fribidi-dev zeromq-dev freetype-dev opus-dev && \
+    apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community \
+        gnu-libiconv fdk-aac-dev libass-dev libvpx-dev libsrt-dev x264-dev x265-dev && \
     # sets timezone
     cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
     echo "Europe/Berlin" >  /etc/timezone && \
@@ -33,7 +35,7 @@ RUN apk update && \
     --enable-nonfree --enable-runtime-cpudetect --enable-fontconfig \
     --enable-openssl --enable-libass --enable-libfdk-aac --enable-libfreetype \
     --enable-libfribidi --enable-libmp3lame --enable-libopus --enable-libvpx \
-    --enable-libx264 --enable-libx265 --enable-libzmq && \
+    --enable-libsrt --enable-libx264 --enable-libx265 --enable-libzmq && \
     make -j $(nproc | awk '{print $1 / 2}') && \
     make install && \
     cd .. && \
