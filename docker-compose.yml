@@ -21,6 +21,7 @@ services:
         build: ffplayout-engine/.
         volumes:
             - "./config/ffplayout.yml:/etc/ffplayout/ffplayout.yml"
+            - "./assets/fonts:/usr/share/fonts"
             - "./logs:/var/log/ffplayout"
             - "./tv-media:/tv-media"
             - "./playlists:/playlists"

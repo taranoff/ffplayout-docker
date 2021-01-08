@@ -74,7 +74,7 @@ storage:
         it will loop when is necessary extensions search only files with this extension,
         can be a list. Set 'shuffle' to 'True' to pick files randomly.
     path: /tv-media
-    filler_clip: /tv-media/ADtv/01 - Intro/seperator.clock.5-00.mp4
+    filler_clip: /tv-media/filler/filler-clip.mp4
     extensions:
     - .mp4
     - .mkv
@@ -85,7 +85,7 @@ text:
     add_text: true
     over_pre: false
     bind_address: 0.0.0.0:5555
-    fontfile: /tv-media/00-assets/SourceSansPro-Semibold.ttf
+    fontfile: /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
 out:
     helptext: The final playout compression. Set the settings to your needs. 'mode'
         has the standard options 'desktop', 'hls', 'stream'. Self made outputs can
