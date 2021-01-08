@@ -12,7 +12,7 @@ RUN apk update && \
     wget "https://github.com/ffplayout/ffplayout-api/archive/v2.1.0.zip" && \
     unzip 'v2.1.0.zip' && \
     mv 'ffplayout-api-2.1.0' 'ffplayout-api' && \
-    rm master.zip && \
+    rm 'v2.1.0.zip' && \
     cd ffplayout-api && \
     pip install --no-cache-dir -r requirements-base.txt && \
     mkdir /etc/ffplayout && \
