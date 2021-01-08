@@ -6,7 +6,7 @@ Complete playout solution with [engine](https://github.com/ffplayout/ffplayout-e
 docker-compose up -d
 ```
 
-A debian like host system, with a resent docker version, is recommand.
+A debian like host system, with a recent docker version, is recommend.
 
 In **config** folder you found all config files you need, for the engine, srs and nginx (runs in ffplayout-frontend).
 
