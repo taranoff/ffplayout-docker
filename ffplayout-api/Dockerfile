@@ -9,9 +9,9 @@ RUN apk update && \
     cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
     echo "Europe/Berlin" >  /etc/timezone && \
     cd /opt && \
-    wget "https://github.com/ffplayout/ffplayout-api/archive/master.zip" && \
-    unzip 'master.zip' && \
-    mv 'ffplayout-api-master' 'ffplayout-api' && \
+    wget "https://github.com/ffplayout/ffplayout-api/archive/v2.1.0.zip" && \
+    unzip 'ffplayout-api-2.1.0.zip' && \
+    mv 'ffplayout-api-2.1.0' 'ffplayout-api' && \
     rm master.zip && \
     cd ffplayout-api && \
     pip install --no-cache-dir -r requirements-base.txt && \
