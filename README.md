@@ -13,3 +13,5 @@ In **config** folder you found all config files you need, for the engine, srs an
 Default login is:
 - user: **admin**
 - pass: **admin**
+
+The GUI can be reach over http://[host ip|fqdn]:8088, but you should use a http(s) proxy.
