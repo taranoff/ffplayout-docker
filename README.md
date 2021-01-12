@@ -2,6 +2,8 @@
 
 Complete playout solution with [engine](https://github.com/ffplayout/ffplayout-engine), [API](https://github.com/ffplayout/ffplayout-api), [Web GUI](https://github.com/ffplayout/ffplayout-frontend) and [srs rtmp/hls server](https://github.com/ossrs/srs).
 
+**Run:**
+
 ```
 docker-compose up -d
 ```
