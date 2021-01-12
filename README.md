@@ -18,5 +18,5 @@ Default login is:
 
 The GUI can be reach over **http://[host ip]:8088**, but you should use a http(s) proxy.
 
-# Info
-You should use the offical docker version from [docker.com](https://docs.docker.com/engine/install/debian/) and the latest [docker-compose](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-debian-10)
+## Info
+You should use the offical docker version from [docker.com](https://docs.docker.com/engine/install/debian/) and the latest [docker-compose](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-debian-10).
