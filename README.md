@@ -16,3 +16,5 @@ Default login is:
 - pass: **admin**
 
 The GUI can be reach over **http://[host ip]:8088**, but you should use a http(s) proxy.
+
+After first login you need to adjust the **player_url** in the configuration tab. Without a proxy the url is: **http://[host ip]:8088/live/tv.m3u8**
