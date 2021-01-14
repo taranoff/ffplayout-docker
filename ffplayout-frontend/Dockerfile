@@ -3,7 +3,9 @@ FROM node:lts-alpine AS build-stage
 ENV NUXT_TELEMETRY_DISABLED=1
 
 # get ffplayout-api and all dependencies
-RUN cd /opt && \
+RUN apk update && \
+    apk add --no-cache tzdata && \
+    cd /opt && \
     wget "https://github.com/ffplayout/ffplayout-frontend/archive/v2.1.0.zip" && \
     unzip 'v2.1.0.zip' && \
     mv 'ffplayout-frontend-2.1.0' 'ffplayout-frontend' && \

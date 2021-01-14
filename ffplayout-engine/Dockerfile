@@ -20,9 +20,6 @@ RUN apk update && \
         libpng-dev fribidi-dev zeromq-dev freetype-dev opus-dev && \
     apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community \
         gnu-libiconv fdk-aac-dev libass-dev libvpx-dev libsrt-dev x264-dev x265-dev && \
-    # sets timezone
-    cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
-    echo "Europe/Berlin" >  /etc/timezone && \
     # psutil needs gcc
     pip install --no-cache-dir psutil && \
     cd /opt && \
@@ -41,7 +38,7 @@ RUN apk update && \
     cd .. && \
     rm -rf ffmpeg && \
     # cleanup
-    apk del build-base gcc libtool gperf nasm yasm tzdata
+    apk del build-base gcc libtool gperf nasm yasm
 
 COPY assets/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY assets/socket-server.py /usr/local/bin/socket-server.py

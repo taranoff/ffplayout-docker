@@ -5,6 +5,7 @@ Complete playout solution with [engine](https://github.com/ffplayout/ffplayout-e
 A debian like host system, with a recent docker version, is recommend.
 
 ## How To
+- **verify that your host system has the correct timezone**
 - use offical version from [docker.com](https://docs.docker.com/engine/install/debian/)
 - get latest [docker-compose](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-debian-10)
 - cd in to **/opt/**
