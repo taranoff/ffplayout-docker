@@ -4,6 +4,8 @@ Complete playout solution with [engine](https://github.com/ffplayout/ffplayout-e
 
 A debian like host system, with a recent docker version, is recommend.
 
+The setup expects a host with free port 80. If the port is not free, the compose file must be adjusted.
+
 ## How To
 - **verify that your host system has the correct timezone**
 - use offical version from [docker.com](https://docs.docker.com/engine/install/debian/)
@@ -16,6 +18,6 @@ Default login is:
 - user: **admin**
 - pass: **admin**
 
-The GUI can be reach over **http://[host ip]:8088**, but you should use a http(s) proxy.
+The GUI can be reach over **http://[host ip]**, but you should use a https proxy.
 
-After first login you need to adjust the **player_url** in the configuration tab. Without a proxy the url is: **http://[host ip]:8088/live/tv.m3u8**
+After first login you need to adjust the **player_url** in the configuration tab. Without a proxy the url is: **http://[host ip]/live/tv.m3u8**

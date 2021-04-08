@@ -1,13 +1,15 @@
 FROM python:3-alpine
 
+ARG version=3.1.0
+
 RUN pip install supervisor
 
 # get ffplayout engine and install all dependencies
 RUN cd /opt && \
-    wget "https://github.com/ffplayout/ffplayout-engine/archive/v2.0.0.zip" && \
-    unzip 'v2.0.0.zip' && \
-    mv 'ffplayout-engine-2.0.0' 'ffplayout-engine' && \
-    rm 'v2.0.0.zip' && \
+    wget "https://github.com/ffplayout/ffplayout-engine/archive/v${version}.zip" && \
+    unzip "v${version}.zip" && \
+    mv "ffplayout-engine-${version}" 'ffplayout-engine' && \
+    rm "v${version}.zip" && \
     cd ffplayout-engine && \
     pip install --no-cache-dir -r requirements-base.txt && \
     mkdir /etc/ffplayout
@@ -40,11 +42,7 @@ RUN apk update && \
     # cleanup
     apk del build-base gcc libtool gperf nasm yasm
 
-COPY assets/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY assets/socket-server.py /usr/local/bin/socket-server.py
-COPY assets/engine-listener.py /usr/local/bin/engine-listener.py
-
 WORKDIR /opt/ffplayout-engine
-EXPOSE 5555 64233
+EXPOSE 5555 9001
 
-CMD ["/usr/local/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/local/bin/supervisord", "-c", "/etc/ffplayout/supervisor/supervisord.conf"]

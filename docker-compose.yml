@@ -18,10 +18,10 @@ services:
         restart: unless-stopped
     ffplayout-engine:
         container_name: ffplayout-engine
-        image: ffplayout-engine:2.0
+        image: ffplayout-engine:3.0
         build: ffplayout-engine/.
         volumes:
-            - "./config/ffplayout.yml:/etc/ffplayout/ffplayout.yml"
+            - "./config/engine:/etc/ffplayout"
             - "./assets/fonts:/usr/share/fonts"
             - "./logs:/var/log/ffplayout"
             - "./tv-media:/tv-media"
@@ -33,19 +33,21 @@ services:
             - ffplayout-network
         ports:
             - "5555:5555"
-            - "64233:64233"
+            - "9001:9001"
         restart: unless-stopped
         depends_on:
             - srs
     ffplayout-api:
         container_name: ffplayout-api
-        image: ffplayout-api:2.0
+        image: ffplayout-api:3.0
         build: ffplayout-api/.
         volumes:
-            - "./config/ffplayout.yml:/etc/ffplayout/ffplayout.yml"
+            - "./config/engine:/etc/ffplayout"
             - "./logs:/var/log/ffplayout"
             - "./tv-media:/tv-media"
             - "./playlists:/playlists"
+            - "/etc/localtime:/etc/localtime:ro"
+            - "/etc/timezone:/etc/timezone:ro"
             - "./assets/static:/opt/ffplayout-api/ffplayout/static"
             - "./assets/dbs:/opt/ffplayout-api/ffplayout/dbs"
         networks:
@@ -57,7 +59,7 @@ services:
             - ffplayout-engine
     ffplayout-frontend:
         container_name: ffplayout-frontend
-        image: ffplayout-frontend:2.0
+        image: ffplayout-frontend:3.0
         build: ffplayout-frontend/.
         volumes:
             - "./tv-media:/usr/share/nginx/html/tv-media"
@@ -69,7 +71,7 @@ services:
         networks:
             - ffplayout-network
         ports:
-            - "8088:80"
+            - "80:80"
         restart: unless-stopped
         depends_on:
             - ffplayout-api
