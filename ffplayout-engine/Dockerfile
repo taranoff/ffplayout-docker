@@ -8,7 +8,7 @@ RUN pip install supervisor
 RUN cd /opt && \
     wget "https://github.com/ffplayout/ffplayout-engine/archive/v${version}.zip" && \
     unzip "v${version}.zip" && \
-    mv "ffplayout-engine-${version}" 'ffplayout-engine' && \
+    mv "ffplayout_engine-${version}" 'ffplayout-engine' && \
     rm "v${version}.zip" && \
     cd ffplayout-engine && \
     pip install --no-cache-dir -r requirements-base.txt && \
